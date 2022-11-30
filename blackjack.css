@@ -20,4 +20,16 @@ body {
   color: white;
 }
 
+.hit {
+  display: inline;
+  color: white;
+  background-color: #00763a;
+  width: 50px;
+}
+.stand {
+  display: inline;
+  color: white;
+  background-color: #00763a;
+  width: 50px;
+}
 /* css tricks */
