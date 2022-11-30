@@ -1,0 +1,23 @@
+body {
+  background-color: #00763a;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url("https://media.istockphoto.com/id/950354934/vector/blackjack-table-top-view.jpg?s=612x612&w=0&k=20&c=N3rF2GAP-5t-8oaiF-vS65qbCW0VTADUiaq7LYN7rzw=");
+}
+.quit {
+  display: inline;
+  justify-content: right;
+  color: white;
+}
+.title {
+  display: flex;
+  justify-content: center;
+  color: white;
+}
+.fa-solid {
+  display: flex;
+  justify-content: right;
+  color: white;
+}
+
+/* css tricks */

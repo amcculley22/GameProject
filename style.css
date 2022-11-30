@@ -12,11 +12,30 @@ h3 {
   display: flex;
   flex-direction: row;
 }
+.blackjack {
+  color: #00763a;
+}
+.bjImage {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 25%;
+  height: 20%;
+}
+.game2 {
+}
+
 .bottom {
   display: flex;
   flex-direction: row;
   color: white;
   font-size: x-small;
+}
+.name {
+  display: flex;
+  flex-direction: row;
+  color: white;
+  font-size: small;
 }
 .gitHub {
   display: flex;
@@ -25,10 +44,5 @@ h3 {
 }
 .linkedIn {
   display: flex;
-
   background-color: white;
-}
-.game1 {
-}
-.game2 {
 }
