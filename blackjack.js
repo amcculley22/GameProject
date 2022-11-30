@@ -42,6 +42,11 @@ const hitButton = document.querySelector("body > div > button.hit");
 hitButton.addEventListener("click", () => {
   function playerHit() {
     var newPlayerCard = Math.floor(Math.random() * 12);
+    //create new element to add the card
+    const anotherCard = document.querySelector("body > div > a");
+
+    anotherCard.innerText = newPlayerCard;
+
     console.log(newPlayerCard);
   }
   playerHit();
