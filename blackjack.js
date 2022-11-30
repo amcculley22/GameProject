@@ -12,18 +12,26 @@ class Player {
     this.cards = cards;
   }
 }
-var firstCard = document.querySelector("body > div.firstCard");
-var secondCard = document.querySelector("body > div.secondCard");
+var firstCard = document.querySelector("body > div > a.firstCard");
+var secondCard = document.querySelector("body > div > a.secondCard");
+var dealerfirst = document.querySelector("body > div > a.dealerCard1");
+var dealersecond = document.querySelector("body > div > a.dealerCard2");
 
 // Give player cards
-function givePlayerCards() {
+function givePlayersCards() {
   var playerCard1 = Math.floor(Math.random() * 12);
   firstCard.innerText = playerCard1;
 
   var playerCard2 = Math.floor(Math.random() * 12);
   secondCard.innerText = playerCard2;
+
+  var dealerCard1 = Math.floor(Math.random() * 12);
+  dealerfirst.innerText = dealerCard1;
+
+  var dealerCard2 = Math.floor(Math.random() * 12);
+  dealersecond.innerText = dealerCard2;
 }
-givePlayerCards();
+givePlayersCards();
 
 // Hit button
 const hitButton = document.querySelector("body > div > button.hit");
