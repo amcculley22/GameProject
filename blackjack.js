@@ -1,14 +1,14 @@
 class Dealer {
-  constructor(hit, stand, [cards]) {
-    this.hit = hit;
-    this.stand = stand;
+  constructor(cash, bet, [cards]) {
+    this.cash = cash;
+    this.bet = bet;
     this.cards = cards;
   }
 }
 class Player {
-  constructor(hit, stand, [cards]) {
-    this.hit = hit;
-    this.stand = stand;
+  constructor(cash, bet, [cards]) {
+    this.cash = cash;
+    this.bet = bet;
     this.cards = cards;
   }
 }
@@ -38,18 +38,15 @@ const hitButton = document.querySelector("body > div > button.hit");
 
 // hit function
 
+function playerHits() {
+  const newCard = document.createElement("a");
+  newCard.innerText = Math.floor(Math.random() * 12);
+  console.log(newCard);
+}
+
 // Hit button event listener
 hitButton.addEventListener("click", () => {
-  function playerHit() {
-    var newPlayerCard = Math.floor(Math.random() * 12);
-    //create new element to add the card
-    const anotherCard = document.querySelector("body > div > a");
-
-    anotherCard.innerText = newPlayerCard;
-
-    console.log(newPlayerCard);
-  }
-  playerHit();
+  playerHits();
 });
 
 // Stand button
@@ -57,5 +54,12 @@ const standButton = document.querySelector("body > div > button.stand");
 
 // Stand button event listener
 standButton.addEventListener("click", () => {
+  // run the dealer hit process if less than 17 hit. if 17 or more stand
+
   console.log("clicked");
 });
+
+// is dealer or player winner
+
+// give / lose money
+// restart cards
