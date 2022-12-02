@@ -12,7 +12,7 @@ body {
 .title {
   display: flex;
   justify-content: center;
-  color: white;
+  color: black;
 }
 .fa-solid {
   display: flex;
@@ -23,13 +23,13 @@ body {
 .hit {
   display: inline;
   color: white;
-  background-color: #00763a;
+  background-color: black;
   width: 50px;
 }
 .stand {
   display: inline;
   color: white;
-  background-color: #00763a;
+  background-color: black;
   width: 50px;
 }
 /* css tricks */
