@@ -8,3 +8,8 @@ Want to make a game site with two games
 2. 3. Maybe a flappy birds type thing
 3. 2. Some sort of shooter/space aliens game
    1. win state is killing all the ships
+
+1 - building deck with loops
+adding the suits
+
+can get it to take out of the deck - need to do one to player and one to dealer.

@@ -1,6 +1,7 @@
 class Dealer {
-  constructor(hand) {
-    this.hand = hand;
+  constructor(cards, money) {
+    this.cards = cards;
+    this.money = money;
   }
 }
 // class Player {
@@ -11,17 +12,14 @@ class Dealer {
 //   }
 // }
 class Player {
-  constructor(hand, pot) {
-    this.hand = hand;
-    this.pot = pot;
+  constructor(cards, money, bet) {
+    this.cards = cards;
+    this.money = money;
+    this.bet = bet;
   }
 }
-const player = {
-  cash: 100,
-  bet: 25,
-  cards: [],
-};
-
+const player = new Player([], 100, 25);
+const dealer = new Dealer([], 100);
 //create an obj with key value pair - jack = 10, king = 10, etc.
 
 //object.keys - create an array of the keys * 4 so have 4 of each cards
@@ -45,6 +43,7 @@ const player = {
 // Hit button
 const hitButton = document.querySelector("body > div > button.hit");
 
+//build deck -
 let deckValues = {
   J: 10,
   Q: 10,
@@ -68,6 +67,8 @@ for (let i = 0; i < faceVal.length; i++) {
     deck.push(faceVal[i] + suits[j]);
   }
 }
+
+//functions
 
 function playerHits() {
   console.log(player.cards);
@@ -97,7 +98,6 @@ function playerHits() {
     });
     document.querySelector("body > div").innerText = sumValue;
     if (sumValue > 21) {
-      resetBoard();
       alert("bust City");
     }
   };
