@@ -48,7 +48,6 @@ const deal = () => {
   //assign random number - fisher yates shuffle (takes from the top) or math.random
   const cardArray = deck.splice(random(deck.length), 1);
   const card = cardArray[0].split(" ");
-
   console.log(card);
   if (typeof card[0] === "string") {
     let cardValue = deckValues[card[0]]; // hashing or hash mapping (looks abovefor the value)

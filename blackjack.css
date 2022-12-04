@@ -25,11 +25,28 @@ body {
   color: white;
   background-color: black;
   width: 50px;
+  display: none;
 }
 .stand {
   display: inline;
   color: white;
   background-color: black;
   width: 50px;
+  display: none;
+}
+
+.start {
+  display: inline;
+  color: white;
+  background-color: black;
+  width: 50px;
+  display: inline;
+}
+.new {
+  display: inline;
+  color: white;
+  background-color: black;
+  width: 50px;
+  display: none;
 }
 /* css tricks */

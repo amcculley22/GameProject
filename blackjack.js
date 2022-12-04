@@ -1,48 +1,46 @@
 class Dealer {
-  constructor(cards, money) {
+  constructor(cards, cardValue, money) {
     this.cards = cards;
+    this.cardValue = cardValue;
     this.money = money;
   }
+  get dealerShouldStand() {
+    let total = 0;
+    for (let card of this.cards) {
+      total += card.value;
+    }
+    if (total >= 17) {
+      return true;
+    }
+    return false;
+  }
 }
-// class Player {
-//   constructor(cash, bet) {
-//     this.cash = cash;
-//     this.bet = bet;
-//     this.pcards = [];
-//   }
-// }
+//make all cards instant of the class
+class Card {
+  constructor(value, suit) {
+    this.value = value;
+    this.suit = suit;
+  }
+}
+
 class Player {
-  constructor(cards, money, bet) {
-    this.cards = cards;
+  constructor(card, money, bet) {
+    this.card = card;
     this.money = money;
     this.bet = bet;
   }
 }
-const player = new Player([], 100, 25);
-const dealer = new Dealer([], 100);
-//create an obj with key value pair - jack = 10, king = 10, etc.
-
-//object.keys - create an array of the keys * 4 so have 4 of each cards
-
-// then radomize an index when dealing to splice a card.
-// math.random and take that number (index) from the array
-
-// calculate the value = based on the cards. Look up to the obj to set the value
-// hit give the player another card
-
-// Give player cards
-// function givePlayersCards() {
-//   playerCard1 = Math.floor(Math.random() * 11) + 1;
-//   player.cards.push(playerCard1);
-//   playerCard2 = Math.floor(Math.random() * 11) + 1;
-//   player.cards.push(playerCard2);
-//   document.querySelector("body > div.playerCards").append(player.cards);
-// }
-// givePlayersCards();
+const playerCards = new Card();
+const dealerCards = new Card();
+const player = new Player(playerCards, 100, 25);
+const dealer = new Dealer(dealerCards, 100);
+// does that work?
 
 // Hit button
+const startButton = document.querySelector("body > div > button.start");
 const hitButton = document.querySelector("body > div > button.hit");
-
+const standButton = document.querySelector("body > div > button.stand");
+const newDealButton = document.querySelector("body > div > button.new");
 //build deck -
 let deckValues = {
   J: 10,
@@ -56,7 +54,7 @@ let deck = [];
 
 for (let i = 2; i < 11; i++) {
   for (let j = 0; j < suits.length; j++) {
-    deck.push(i + suits[j]);
+    deck.push(new Card(i, suits[j]));
   }
 }
 
@@ -64,22 +62,98 @@ let faceVal = Object.keys(deckValues);
 
 for (let i = 0; i < faceVal.length; i++) {
   for (let j = 0; j < suits.length; j++) {
-    deck.push(faceVal[i] + suits[j]);
+    deck.push(new Card(faceVal[i], suits[j]));
+  }
+}
+console.log(deck);
+
+console.log(deckValues);
+
+console.log(player);
+console.log(player.card);
+console.log(deck[2]);
+const oneT = deck[2];
+console.log(oneT);
+
+// how tf do i get the card into the class?
+
+deck[2] = player.card;
+console.log(player.card);
+//functions
+
+console.log(playerCards.value);
+
+function pStartGame() {
+  startButton.style.display = "none";
+  newDealButton.style.display = "none";
+  hitButton.style.display = "inline";
+  standButton.style.display = "inline";
+  const random = (max) => {
+    return Math.floor(Math.random() * (max - 1) + 1);
+  };
+  for (i = 0; i < 2; i++) {
+    const deal = () => {
+      //assign random number - fisher yates shuffle (takes from the top) or math.random
+      const cardArray = deck.splice(random(deck.length), 1);
+      Card.push(playerCards.value[0]);
+      Card.forEach((cur) => {
+        let curCard, num;
+        if (deckValues[curCard[0]]) {
+          player.card.value = deckValues[curCard[0]];
+          num = cardValue;
+        } else {
+          num = Number(curCard[0]);
+        }
+        player.card += num;
+      });
+      // document.querySelector("body > div > div.player1").innerText = sumValue;
+      // if (sumValue === 21) {
+      //   alert("BlackJack");
+      // }
+    };
+    deal();
+  }
+}
+function dStartGame() {
+  const random = (max) => {
+    return Math.floor(Math.random() * (max - 1) + 1);
+  };
+  for (i = 0; i < 2; i++) {
+    const deal = () => {
+      //assign random number - fisher yates shuffle (takes from the top) or math.random
+      const cardArray = deck.splice(random(deck.length), 1);
+      dealer.cards.push(cardArray[0]);
+      let sumValue = 0;
+      dealer.cards.forEach((cur) => {
+        let curCard, num;
+        if (typeof cur === "string") {
+          curCard = cur.split(" ");
+        }
+        if (deckValues[curCard[0]]) {
+          let cardValue = deckValues[curCard[0]];
+          num = cardValue;
+        } else {
+          num = Number(curCard[0]);
+        }
+        sumValue += num;
+      });
+      document.querySelector("body > div > div.dealer").innerText = sumValue;
+      if (sumValue === 21) {
+        alert("loser");
+        resetBoard();
+      }
+    };
+    deal();
   }
 }
 
-//functions
-
 function playerHits() {
-  console.log(player.cards);
   const random = (max) => {
     return Math.floor(Math.random() * (max - 1) + 1);
   };
   const deal = () => {
     //assign random number - fisher yates shuffle (takes from the top) or math.random
     const cardArray = deck.splice(random(deck.length), 1);
-    //const card = cardArray[0].split(" ");
-
     player.cards.push(cardArray[0]);
     let sumValue = 0;
     player.cards.forEach((cur) => {
@@ -93,40 +167,97 @@ function playerHits() {
       } else {
         num = Number(curCard[0]);
       }
-
       sumValue += num;
     });
-    document.querySelector("body > div").innerText = sumValue;
+    document.querySelector("body > div > div.player1").innerText = sumValue;
     if (sumValue > 21) {
-      alert("bust City");
+      alert("Bust");
+      resetBoard();
     }
   };
   deal();
-
   console.log(player.cards);
 }
+// value into class
+function standBut() {
+  const random = (max) => {
+    return Math.floor(Math.random() * (max - 1) + 1);
+  };
+  console.log(dealer.cards.sumValue);
+  const deal = () => {
+    const cardArray = deck.splice(random(deck.length), 1);
+    dealer.cards.push(cardArray[0]);
+    let sumValue = 0;
+    dealer.cards.forEach((cur) => {
+      let curCard, num;
+      if (typeof cur === "string") {
+        curCard = cur.split(" ");
+      }
+      console.log(sumValue);
+      if (deckValues[curCard[0]]) {
+        let cardValue = deckValues[curCard[0]];
+        num = cardValue;
+      } else {
+        num = Number(curCard[0]);
+      }
+      console.log(sumValue);
+      if (sumValue < 17) {
+        // //function stand() {
+        //     for (; i < 17)
+        //     sumValue += num;
+        // }
+      } else {
+        // quesry the sums and chose bigger number
+      }
+    });
+    document.querySelector("body > div > div.dealer").innerText = sumValue;
+    console.log(sumValue);
+  };
+  deal();
+}
+
 function resetBoard() {
   player.cards = [];
+  dealer.cards = [];
+  document.querySelector("body > div > div.dealer").innerText = "";
+  document.querySelector("body > div > div.player1").innerText = "";
   sumValue = 0;
-  document.querySelector("body > div").innerText = "";
+  newDealButton.style.display = "inline";
+  startButton.style.display = "none";
+  hitButton.style.display = "none";
+  standButton.style.display = "none";
 }
 
 // Hit button event listener
 hitButton.addEventListener("click", () => {
   playerHits();
+  document.querySelector("body > div > div.player1").innerText = sumValue;
+});
+
+startButton.addEventListener("click", () => {
+  pStartGame();
+  dStartGame();
+  console.log(dealer.cards);
+  console.log(player.cards);
+  document.querySelector("body > div > div.player1").innerText = sumValue;
 });
 
 // Stand button
-const standButton = document.querySelector("body > div > button.stand");
 
 // Stand button event listener
 standButton.addEventListener("click", () => {
-  // run the dealer hit process if less than 17 hit. if 17 or more stand
+  standBut();
+  console.log("DealerCards: " + dealer.cards);
+});
 
-  console.log("clicked");
+newDealButton.addEventListener("click", () => {
+  pStartGame();
+  dStartGame();
+  console.log(dealer.cards);
+  console.log(player.cards);
+  document.querySelector("body > div > div.player1").innerText = sumValue;
 });
 
 // is dealer or player winner
-
 // give / lose money
 // restart cards
