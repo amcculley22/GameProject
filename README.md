@@ -13,3 +13,7 @@ Want to make a game site with two games
 adding the suits
 
 can get it to take out of the deck - need to do one to player and one to dealer.
+
+difficult looping over in the class but worked around.
+
+Flappy files is NOT my work just testing/exploring it.
