@@ -40,7 +40,9 @@ body {
   color: white;
   background-color: black;
   width: 50px;
-  display: inline;
+  display: flex;
+  align-content: center;
+  justify-content: center;
 }
 .new {
   display: inline;
