@@ -76,7 +76,6 @@ function pStartGame() {
       player.cards.push(pCardArray);
       dealer.cards.push(dCardArray);
     };
-
     deal();
   }
 }
@@ -95,13 +94,16 @@ function resetBoard() {
 function dcheck(num) {
   if (num > 21) {
     console.log(num);
+    lose();
     alert("Dealer Bust");
   }
 }
+
 function pcheck(num) {
   if (num > 21) {
     console.log(num);
     alert("bust city");
+    lose();
     resetBoard();
   }
 }
@@ -139,6 +141,21 @@ hitButton.addEventListener("click", () => {
   }
 });
 
+function win() {
+  const money = player.money + player.bet;
+  console.log(money);
+  const updateMoney = (document.querySelector("body > div.money").innerText =
+    money);
+}
+
+function lose() {
+  const money = player.money - player.bet;
+  console.log(money);
+  document.querySelector("body > div.money").innerText = money;
+  const updateMoney = (document.querySelector("body > div.money").innerText =
+    money);
+}
+
 function stand() {
   const dcard1 = dealer.cards[1].value;
   const dcard2 = dealer.cards[2].value;
@@ -152,12 +169,15 @@ function stand() {
     if (dsum < 22) {
       if (dsum > psum) {
         alert("Dealer wins");
+        lose();
         resetBoard();
       } else {
         alert("You Win $$");
+        win();
       }
     } else {
       alert("You Win $$");
+      win();
     }
   } else {
     // if dealer is less than 17 get card other wise see which is larger
@@ -192,12 +212,14 @@ function stand() {
           if (dsum < 22) {
             if (dsum > psum) {
               alert("Dealer wins");
-              resetBoard();
+              lose();
             } else {
               alert("You Win $$");
+              win();
             }
           } else {
             alert("You Win $$");
+            win();
           }
         };
         hit();
@@ -231,12 +253,15 @@ function stand() {
           if (dsum < 22) {
             if (dsum > psum) {
               alert("Dealer wins");
-              resetBoard();
+              const money = player.money - player.bet;
+              lose();
             } else {
               alert("You Win $$");
+              win();
             }
           } else {
             alert("You Win $$");
+            win();
           }
         };
         hit();
@@ -267,12 +292,15 @@ function stand() {
           if (dsum < 22) {
             if (dsum > psum) {
               alert("Dealer wins");
+              lose();
               resetBoard();
             } else {
               alert("You Win $$");
+              win();
             }
           } else {
             alert("You Win $$");
+            win();
           }
         };
         hit();
@@ -285,19 +313,21 @@ function stand() {
 //set time ouit for alerts (set time out (()))
 
 // make the number to the card image
-function getCardImage() {
-  const num1 = player.cards[1].value;
-  const suit1 = player.cards[1].suit;
-  const card1 = `${num1}-${suit1}`;
-  const num2 = player.cards[2].value;
-  const suit2 = player.cards[2].suit;
-  const card2 = `${num2}-${suit2}`;
-  //const card1Img = document.createElement(div);
-  //card1Img.classList.add(card1);
+// function getCardImage() {
+//   const num1 = player.cards[1].value;
+//   const suit1 = player.cards[1].suit;
+//   const card1 = `${num1}-${suit1}`;
+//   const num2 = player.cards[2].value;
+//   const suit2 = player.cards[2].suit;
+//   const card2 = `${num2}-${suit2}`;
+//   const card1Img = document.createElement("div");
+//   //card1Img.className.add(card1);
+//   card1Img.classList.add(card1);
+//   card1Img.style.backgroundImage = `url(./assets/${card1}.png)`;
 
-  console.log(card1);
-  console.log(card2);
-}
+//   card1Img.console.log(card1);
+//   console.log(card2);
+// }
 
 startButton.addEventListener("click", () => {
   pStartGame();
@@ -306,7 +336,6 @@ startButton.addEventListener("click", () => {
     console.log(player.bet);
     let money = player.money;
     let bet = player.bet;
-
     document.querySelector("body > div.money").innerText = money;
     document.querySelector("body > div.bet").innerText = bet;
     //player cards
@@ -318,11 +347,12 @@ startButton.addEventListener("click", () => {
     const dcard2 = dealer.cards[2].value;
     const dtwoSum = dcard1 + dcard2;
     //append the DOM
+
     document.querySelector("body > div > div.dealer").innerText = dtwoSum;
     document.querySelector("body > div > div.player1").innerText = twoSum;
   }
   sumCards();
-  getCardImage();
+  //getCardImage();
 });
 
 // Stand button event listener
@@ -341,6 +371,7 @@ newDealButton.addEventListener("click", () => {
   newDealButton.style.display = "none";
   document.querySelector("body > div > div.dealer").innerText = "";
   document.querySelector("body > div > div.player1").innerText = "";
+  player.money = document.querySelector("body > div.money").innerText = money;
   window.location.reload();
 });
 
