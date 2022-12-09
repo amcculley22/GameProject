@@ -302,7 +302,10 @@ startButton.addEventListener("click", () => {
 
 // Stand button event listener
 standButton.addEventListener("click", () => {
-  stand();
+  do {
+    stand();
+  } while (document.querySelector("body > div > div.dealer").innerText < 17);
+
   hitButton.style.display = "none";
   standButton.style.display = "none";
   newDealButton.style.display = "inline";
