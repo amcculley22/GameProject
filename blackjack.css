@@ -16,7 +16,7 @@ body {
 }
 .fa-solid {
   display: flex;
-  justify-content: right;
+  justify-content: center;
   color: white;
 }
 
@@ -52,15 +52,17 @@ body {
   display: none;
 }
 .money {
-  color: green;
-  background-color: black;
+  color: tan;
+  background-color: green;
+  border-color: black;
   width: 50px;
-  margin: 2px;
   text-align: center;
+  margin: 2px;
 }
 .bet {
-  color: green;
-  background-color: black;
+  color: tan;
+  background-color: green;
+  border-color: black;
   width: 50px;
   text-align: center;
   margin: 2px;
@@ -68,9 +70,16 @@ body {
 .phand {
   color: black;
   text-align: center;
+  font-size: large;
 }
 .dhand {
-  justify-content: center;
+  text-align: center;
   color: black;
+  font-size: large;
 }
-/* css tricks */
+#card1 {
+  text-align: center;
+  color: black;
+  font-size: large;
+}
+/* use css tricks file */

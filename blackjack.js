@@ -282,12 +282,21 @@ function stand() {
   }
 }
 
+//set time ouit for alerts (set time out (()))
+
+// make the number to the card image
 function getCardImage() {
   const num1 = player.cards[1].value;
   const suit1 = player.cards[1].suit;
   const card1 = `${num1}-${suit1}`;
-  //const card1Img = document.createElement(card1);
+  const num2 = player.cards[2].value;
+  const suit2 = player.cards[2].suit;
+  const card2 = `${num2}-${suit2}`;
+  //const card1Img = document.createElement(div);
+  //card1Img.classList.add(card1);
+
   console.log(card1);
+  console.log(card2);
 }
 
 startButton.addEventListener("click", () => {
