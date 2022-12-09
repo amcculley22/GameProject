@@ -51,4 +51,26 @@ body {
   width: 50px;
   display: none;
 }
+.money {
+  color: green;
+  background-color: black;
+  width: 50px;
+  margin: 2px;
+  text-align: center;
+}
+.bet {
+  color: green;
+  background-color: black;
+  width: 50px;
+  text-align: center;
+  margin: 2px;
+}
+.phand {
+  color: black;
+  text-align: center;
+}
+.dhand {
+  justify-content: center;
+  color: black;
+}
 /* css tricks */

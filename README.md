@@ -17,3 +17,7 @@ can get it to take out of the deck - need to do one to player and one to dealer.
 difficult looping over in the class but worked around.
 
 Flappy files is NOT my work just testing/exploring it.
+
+1. Demo [5 mins]
+2. Show code (1. new thing learned & Biggest challenge ) [5 mins]
+3. Questions

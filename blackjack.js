@@ -282,9 +282,24 @@ function stand() {
   }
 }
 
+function getCardImage() {
+  const num1 = player.cards[1].value;
+  const suit1 = player.cards[1].suit;
+  const card1 = `${num1}-${suit1}`;
+  //const card1Img = document.createElement(card1);
+  console.log(card1);
+}
+
 startButton.addEventListener("click", () => {
   pStartGame();
   function sumCards() {
+    // player money
+    console.log(player.bet);
+    let money = player.money;
+    let bet = player.bet;
+
+    document.querySelector("body > div.money").innerText = money;
+    document.querySelector("body > div.bet").innerText = bet;
     //player cards
     const pcard1 = player.cards[1].value;
     const pcard2 = player.cards[2].value;
@@ -298,6 +313,7 @@ startButton.addEventListener("click", () => {
     document.querySelector("body > div > div.player1").innerText = twoSum;
   }
   sumCards();
+  getCardImage();
 });
 
 // Stand button event listener
