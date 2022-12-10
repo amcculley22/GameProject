@@ -179,7 +179,7 @@ body {
   width: 100px;
   background-repeat: no-repeat;
   background-size: contain;
-  background-image: );
+  background-image: ;
   display: none;
 }
 #dcard3 {
@@ -199,7 +199,7 @@ body {
   width: 100px;
   background-repeat: no-repeat;
   background-size: contain;
-  background-image:;
+  background-image: ;
   display: none;
 }
 #dcard5 {
@@ -218,6 +218,16 @@ body {
 }
 .player1 {
   display: none;
+}
+.deck {
+  position: absolute;
+  right: 0%;
+  top: 100px;
+  height: 200px;
+  width: 100px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url("./assets/BACK.png");
 }
 
 /* use css tricks file */
