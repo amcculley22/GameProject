@@ -213,4 +213,11 @@ body {
   display: none;
 }
 
+.dealer {
+  display: none;
+}
+.player1 {
+  display: none;
+}
+
 /* use css tricks file */

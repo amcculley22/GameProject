@@ -98,14 +98,14 @@ function dcheck(num) {
   if (num > 21) {
     console.log(num);
     lose();
-    alert("Dealer Bust");
+    setTimeout(alert("Dealer Bust, You Win $$"), 5000);
   }
 }
 
 function pcheck(num) {
   if (num > 21) {
     console.log(num);
-    alert("bust city");
+    setTimeout(alert("Bust you lose"), 5000);
     lose();
     resetBoard();
   }
@@ -158,6 +158,14 @@ function lose() {
   const updateMoney = (document.querySelector("body > div.money").innerText =
     money);
 }
+function flip() {
+  const dnum1 = dealer.cards[1].value;
+  const dsuit1 = dealer.cards[1].suit;
+  const dealcard1 = `${dnum1}-${dsuit1}.png`;
+  const dcard1Img = document.querySelector("body > div > p#dcard1");
+  dcard1Img.style.backgroundImage = `url(./assets/${dealcard1})`;
+  dcard1Img.style.display = "inline";
+}
 
 function stand() {
   const dcard1 = dealer.cards[1].value;
@@ -171,15 +179,15 @@ function stand() {
     console.log(psum);
     if (dsum < 22) {
       if (dsum > psum) {
-        alert("Dealer wins");
+        setTimeout(alert("Dealer Wins"), 5000);
         lose();
         resetBoard();
       } else {
-        alert("You Win $$");
+        setTimeout(alert("You Win $$"), 5000);
         win();
       }
     } else {
-      alert("You Win $$");
+      setTimeout(alert("You Win $$"), 5000);
       win();
     }
   } else {
@@ -214,14 +222,14 @@ function stand() {
           console.log(psum);
           if (dsum < 22) {
             if (dsum > psum) {
-              alert("Dealer wins");
+              setTimeout(alert("Dealer Wins"), 5000);
               lose();
             } else {
-              alert("You Win $$");
+              setTimeout(alert("You Win $$"), 5000);
               win();
             }
           } else {
-            alert("You Win $$");
+            setTimeout(alert("You Win $$"), 5000);
             win();
           }
         };
@@ -255,15 +263,15 @@ function stand() {
           console.log(psum);
           if (dsum < 22) {
             if (dsum > psum) {
-              alert("Dealer wins");
+              setTimeout(alert("Dealer Wins"), 5000);
               const money = player.money - player.bet;
               lose();
             } else {
-              alert("You Win $$");
+              setTimeout(alert("You Win $$"), 5000);
               win();
             }
           } else {
-            alert("You Win $$");
+            setTimeout(alert("You Win $$"), 5000);
             win();
           }
         };
@@ -294,21 +302,21 @@ function stand() {
           console.log(psum);
           if (dsum < 22) {
             if (dsum > psum) {
-              alert("Dealer wins");
+              setTimeout(alert("Dealer Wins"), 5000);
               lose();
               resetBoard();
             } else {
-              alert("You Win $$");
+              setTimeout(alert("You Win $$"), 5000);
               win();
             }
           } else {
-            alert("You Win $$");
+            setTimeout(alert("You Win $$"), 5000);
             win();
           }
         };
         hit();
 
-        dcheck(dsum);
+        setTimeout(dcheck(dsum), 5000);
       }
     }
   }
@@ -340,7 +348,7 @@ function getCardImage() {
   const dsuit2 = dealer.cards[2].suit;
   const dcard2 = `${dnum2}-${dsuit2}.png`;
   const dcard1Img = document.querySelector("body > div > p#dcard1");
-  dcard1Img.style.backgroundImage = `url(./assets/${dcard1})`;
+  dcard1Img.style.backgroundImage = `url(./assets/BACK.png)`;
   dcard1Img.style.display = "inline";
   const dcard2Img = document.querySelector("body > div > p#dcard2");
   dcard2Img.style.backgroundImage = `url(./assets/${dcard2})`;
@@ -385,10 +393,10 @@ startButton.addEventListener("click", () => {
 
 // Stand button event listener
 standButton.addEventListener("click", () => {
+  flip();
   do {
-    stand();
+    setTimeout(stand(), 5000);
   } while (document.querySelector("body > div > div.dealer").innerText < 17);
-
   hitButton.style.display = "none";
   standButton.style.display = "none";
   newDealButton.style.display = "inline";
@@ -402,7 +410,6 @@ newDealButton.addEventListener("click", () => {
   document.querySelector("body > div > div.player1").innerText = "";
   player.cards = [""];
   dealer.cards = [""];
-  // player.money = document.querySelector("body > div.money").innerText = money;
   pStartGame();
   function sumCards() {
     //player cards
