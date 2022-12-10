@@ -80,8 +80,8 @@ function pStartGame() {
 }
 
 function resetBoard() {
-  player.cards = [];
-  dealer.cards = [];
+  player.cards = [""];
+  dealer.cards = [""];
   document.querySelector("body > div > div.dealer").innerText = "";
   document.querySelector("body > div > div.player1").innerText = "";
   newDealButton.style.display = "inline";
@@ -90,8 +90,12 @@ function resetBoard() {
   standButton.style.display = "none";
   document.querySelector("body > div > p#dcard1").style.display = "none";
   document.querySelector("body > div > p#dcard2").style.display = "none";
+  document.querySelector("body > div > p#dcard3").style.display = "none";
+  document.querySelector("body > div > p#dcard4").style.display = "none";
   document.querySelector("body > div > p#card1").style.display = "none";
   document.querySelector("body > div > p#card2").style.display = "none";
+  document.querySelector("body > div > p#card3").style.display = "none";
+  document.querySelector("body > div > p#card4").style.display = "none";
 }
 
 function dcheck(num) {
@@ -133,11 +137,23 @@ hitButton.addEventListener("click", () => {
     document.querySelector("body > div > div.player1").innerText = totalsum;
     pcheck(totalsum);
   } else if (player.cards.length > 4) {
+    const num4 = player.cards[4].value;
+    const suit4 = player.cards[4].suit;
+    const card4 = `${num4}-${suit4}.png`;
+    const card4Img = document.querySelector("body > div > p#card4");
+    card4Img.style.backgroundImage = `url(./assets/${card4})`;
+    card4Img.style.display = "inline";
     const pcard4 = player.cards[4].value;
     const totalsum = pcard1 + pcard2 + pcard3 + pcard4;
     document.querySelector("body > div > div.player1").innerText = totalsum;
     pcheck(totalsum);
   } else {
+    const num3 = player.cards[3].value;
+    const suit3 = player.cards[3].suit;
+    const card3 = `${num3}-${suit3}.png`;
+    const card3Img = document.querySelector("body > div > p#card3");
+    card3Img.style.backgroundImage = `url(./assets/${card3})`;
+    card3Img.style.display = "inline";
     const totalsum = pcard1 + pcard2 + pcard3;
     document.querySelector("body > div > div.player1").innerText = totalsum;
     pcheck(totalsum);
@@ -158,13 +174,16 @@ function lose() {
   const updateMoney = (document.querySelector("body > div.money").innerText =
     money);
 }
-function flip() {
+
+function show() {
   const dnum1 = dealer.cards[1].value;
   const dsuit1 = dealer.cards[1].suit;
   const dealcard1 = `${dnum1}-${dsuit1}.png`;
   const dcard1Img = document.querySelector("body > div > p#dcard1");
   dcard1Img.style.backgroundImage = `url(./assets/${dealcard1})`;
   dcard1Img.style.display = "inline";
+
+  console.log(dcard1Img);
 }
 
 function stand() {
@@ -220,26 +239,33 @@ function stand() {
             "body > div > div.player1"
           ).innerText;
           console.log(psum);
-          if (dsum < 22) {
-            if (dsum > psum) {
-              setTimeout(alert("Dealer Wins"), 5000);
-              lose();
-            } else {
-              setTimeout(alert("You Win $$"), 5000);
-              win();
-            }
+        };
+        hit();
+        if (dsum < 22) {
+          if (dsum > psum) {
+            setTimeout(alert("Dealer Wins"), 5000);
+            lose();
           } else {
             setTimeout(alert("You Win $$"), 5000);
             win();
           }
-        };
-        hit();
+        } else {
+          setTimeout(alert("You Win $$"), 5000);
+          win();
+        }
       }
     } else if (dealer.cards.length > 3) {
       const dcard1 = dealer.cards[1].value;
       const dcard2 = dealer.cards[2].value;
       const dcard3 = dealer.cards[3].value;
       const dsum = dcard1 + dcard2 + dcard3;
+      const dnum3 = dealer.cards[3].value;
+      const dsuit3 = dealer.cards[3].suit;
+      const dealcard3 = `${dnum3}-${dsuit3}.png`;
+      const dcard3Img = document.querySelector("body > div > p#dcard3");
+      dcard3Img.style.backgroundImage = `url(./assets/${dealcard3})`;
+      console.log(dealcard3);
+      dcard3Img.style.display = "inline";
       if (dsum < 17) {
         const random = (max) => {
           return Math.floor(Math.random() * (max - 1) + 1);
@@ -254,6 +280,12 @@ function stand() {
           const dcard3 = dealer.cards[3].value;
           const dcard4 = dealer.cards[4].value;
           const dsum = dcard1 + dcard2 + dcard3 + dcard4;
+          const dnum4 = dealer.cards[4].value;
+          const dsuit4 = dealer.cards[4].suit;
+          const dealcard4 = `${dnum4}-${dsuit4}.png`;
+          const dcard4Img = document.querySelector("body > div > p#dcard4");
+          dcard4Img.style.backgroundImage = `url(./assets/${dealcard4})`;
+          dcard4Img.style.display = "inline";
           console.log(dsum);
           document.querySelector("body > div > div.dealer").innerText = dsum;
           dcheck(dsum);
@@ -264,8 +296,8 @@ function stand() {
           if (dsum < 22) {
             if (dsum > psum) {
               setTimeout(alert("Dealer Wins"), 5000);
-              const money = player.money - player.bet;
               lose();
+              resetBoard();
             } else {
               setTimeout(alert("You Win $$"), 5000);
               win();
@@ -294,6 +326,13 @@ function stand() {
           const dcard2 = dealer.cards[2].value;
           const dcard3 = dealer.cards[3].value;
           const dsum = dcard1 + dcard2 + dcard3;
+          const dnum3 = dealer.cards[3].value;
+          const dsuit3 = dealer.cards[3].suit;
+          const dealcard3 = `${dnum3}-${dsuit3}.png`;
+          const dcard3Img = document.querySelector("body > div > p#dcard3");
+          dcard3Img.style.backgroundImage = `url(./assets/${dealcard3})`;
+          console.log(dealcard3);
+          dcard3Img.style.display = "inline";
           console.log(dsum);
           document.querySelector("body > div > div.dealer").innerText = dsum;
           const psum = document.querySelector(
@@ -315,8 +354,6 @@ function stand() {
           }
         };
         hit();
-
-        setTimeout(dcheck(dsum), 5000);
       }
     }
   }
@@ -348,7 +385,7 @@ function getCardImage() {
   const dsuit2 = dealer.cards[2].suit;
   const dcard2 = `${dnum2}-${dsuit2}.png`;
   const dcard1Img = document.querySelector("body > div > p#dcard1");
-  dcard1Img.style.backgroundImage = `url(./assets/BACK.png)`;
+  dcard1Img.style.backgroundImage = `url(./assets/${dcard1})`;
   dcard1Img.style.display = "inline";
   const dcard2Img = document.querySelector("body > div > p#dcard2");
   dcard2Img.style.backgroundImage = `url(./assets/${dcard2})`;
@@ -393,14 +430,13 @@ startButton.addEventListener("click", () => {
 
 // Stand button event listener
 standButton.addEventListener("click", () => {
-  flip();
+  getCardImage();
   do {
     setTimeout(stand(), 5000);
   } while (document.querySelector("body > div > div.dealer").innerText < 17);
   hitButton.style.display = "none";
   standButton.style.display = "none";
   newDealButton.style.display = "inline";
-  getCardImage();
 });
 
 newDealButton.addEventListener("click", () => {
