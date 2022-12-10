@@ -10,7 +10,10 @@ body {
   color: white;
 }
 .title {
-  justify-content: center;
+  position: absolute;
+  top: -5px;
+  left: 45%;
+  right: 50%;
   color: black;
 }
 .fa-solid {
@@ -45,7 +48,7 @@ body {
   background-color: black;
   width: 50px;
   position: absolute;
-  left: 50%;
+  left: 45%;
   top: 80%;
 }
 .new {
@@ -57,7 +60,7 @@ body {
   left: 50%;
   top: 80%;
 }
-.nwword {
+.chipsword {
   position: absolute;
   top: 10px;
   right: 25px;
@@ -92,7 +95,7 @@ body {
 .phand {
   position: absolute;
   height: 200px;
-  left: 50%;
+  left: 45%;
   top: 300px;
   width: 100px;
   color: black;
@@ -100,8 +103,8 @@ body {
 }
 .dhand {
   position: absolute;
-  top: 110px;
-  left: 50%;
+  top: 40px;
+  left: 45%;
   color: black;
   font-size: large;
 }
@@ -113,7 +116,7 @@ body {
   width: 100px;
   background-repeat: no-repeat;
   background-size: contain;
-  background-image: url("./assets/10-C.png");
+  background-image: ;
   display: none;
 }
 #card2 {
@@ -124,7 +127,7 @@ body {
   width: 100px;
   background-repeat: no-repeat;
   background-size: contain;
-  background-image: url("./assets/9-D.png");
+  background-image: ;
   display: none;
 }
 #card3 {
@@ -135,7 +138,7 @@ body {
   width: 100px;
   background-repeat: no-repeat;
   background-size: contain;
-  background-image: url("./assets/9-D.png");
+  background-image: ;
   display: none;
 }
 #card4 {
@@ -146,7 +149,7 @@ body {
   width: 100px;
   background-repeat: no-repeat;
   background-size: contain;
-  background-image: url("./assets/9-D.png");
+  background-image: ;
   display: none;
 }
 #card5 {
@@ -157,7 +160,7 @@ body {
   width: 100px;
   background-repeat: no-repeat;
   background-size: contain;
-  background-image: url("./assets/9-D.png");
+  background-image: ;
   display: none;
 }
 #dcard1 {
@@ -166,7 +169,7 @@ body {
   width: 100px;
   background-repeat: no-repeat;
   background-size: contain;
-  background-image: url("./assets/10-C.png");
+  background-image: ;
   display: none;
 }
 #dcard2 {
@@ -176,7 +179,7 @@ body {
   width: 100px;
   background-repeat: no-repeat;
   background-size: contain;
-  background-image: url("./assets/9-D.png");
+  background-image: );
   display: none;
 }
 #dcard3 {
@@ -186,7 +189,7 @@ body {
   width: 100px;
   background-repeat: no-repeat;
   background-size: contain;
-  background-image: url("./assets/9-D.png");
+  background-image: ;
   display: none;
 }
 #dcard4 {
@@ -196,7 +199,7 @@ body {
   width: 100px;
   background-repeat: no-repeat;
   background-size: contain;
-  background-image: url("./assets/9-D.png");
+  background-image:;
   display: none;
 }
 #dcard5 {
@@ -206,7 +209,7 @@ body {
   width: 100px;
   background-repeat: no-repeat;
   background-size: contain;
-  background-image: url("./assets/9-D.png");
+  background-image: ;
   display: none;
 }
 

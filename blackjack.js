@@ -41,7 +41,7 @@ let deckValues = {
 let suits = ["H", "D", "C", "S"];
 let deck = [];
 
-let faceVal = Object.values(deckValues);
+const faceVal = Object.values(deckValues);
 
 for (let i = 2; i < 11; i++) {
   for (let j = 0; j < suits.length; j++) {
@@ -70,7 +70,6 @@ function pStartGame() {
   };
   for (i = 0; i < 2; i++) {
     const deal = () => {
-      //assign random number - fisher yates shuffle (takes from the top) or math.random
       const pCardArray = deck.splice(random(deck.length), 1)[0];
       const dCardArray = deck.splice(random(deck.length), 1)[0];
       player.cards.push(pCardArray);
@@ -89,6 +88,10 @@ function resetBoard() {
   startButton.style.display = "none";
   hitButton.style.display = "none";
   standButton.style.display = "none";
+  document.querySelector("body > div > p#dcard1").style.display = "none";
+  document.querySelector("body > div > p#dcard2").style.display = "none";
+  document.querySelector("body > div > p#card1").style.display = "none";
+  document.querySelector("body > div > p#card2").style.display = "none";
 }
 
 function dcheck(num) {
@@ -304,30 +307,55 @@ function stand() {
           }
         };
         hit();
+
         dcheck(dsum);
       }
     }
   }
+  getCardImage();
 }
 
 //set time ouit for alerts (set time out (()))
 
 // make the number to the card image
-// function getCardImage() {
-//   const num1 = player.cards[1].value;
-//   const suit1 = player.cards[1].suit;
-//   const card1 = `${num1}-${suit1}`;
-//   const num2 = player.cards[2].value;
-//   const suit2 = player.cards[2].suit;
-//   const card2 = `${num2}-${suit2}`;
-//   const card1Img = document.createElement("div");
-//   //card1Img.className.add(card1);
-//   card1Img.classList.add(card1);
-//   card1Img.style.backgroundImage = `url(./assets/${card1}.png)`;
+function getCardImage() {
+  const faceVal = Object.keys(deckValues);
+  const num1 = player.cards[1].value;
+  const suit1 = player.cards[1].suit;
+  const card1 = `${num1}-${suit1}.png`;
+  const num2 = player.cards[2].value;
+  const suit2 = player.cards[2].suit;
+  const card2 = `${num2}-${suit2}.png`;
+  const card1Img = document.querySelector("body > div > p#card1");
+  card1Img.style.backgroundImage = `url(./assets/${card1})`;
+  card1Img.style.display = "inline";
+  const card2Img = document.querySelector("body > div > p#card2");
+  card2Img.style.backgroundImage = `url(./assets/${card2})`;
+  card2Img.style.display = "inline";
+  // dealer cards
+  const dnum1 = dealer.cards[1].value;
+  const dsuit1 = dealer.cards[1].suit;
+  const dcard1 = `${dnum1}-${dsuit1}.png`;
+  const dnum2 = dealer.cards[2].value;
+  const dsuit2 = dealer.cards[2].suit;
+  const dcard2 = `${dnum2}-${dsuit2}.png`;
+  const dcard1Img = document.querySelector("body > div > p#dcard1");
+  dcard1Img.style.backgroundImage = `url(./assets/${dcard1})`;
+  dcard1Img.style.display = "inline";
+  const dcard2Img = document.querySelector("body > div > p#dcard2");
+  dcard2Img.style.backgroundImage = `url(./assets/${dcard2})`;
+  dcard2Img.style.display = "inline";
+}
 
-//   card1Img.console.log(card1);
-//   console.log(card2);
-// }
+function hitImage() {
+  console.log(player.cards);
+  const num3 = player.cards[3].value;
+  const suit3 = player.cards[3].suit;
+  const card3 = `${num3}-${suit3}.png`;
+  const card3Img = document.querySelector("body > div > p#card3");
+  card3Img.style.backgroundImage = `url(./assets/${card3})`;
+  card3Img.style.display = "inline";
+}
 
 startButton.addEventListener("click", () => {
   pStartGame();
@@ -352,7 +380,7 @@ startButton.addEventListener("click", () => {
     document.querySelector("body > div > div.player1").innerText = twoSum;
   }
   sumCards();
-  //getCardImage();
+  getCardImage();
 });
 
 // Stand button event listener
@@ -364,6 +392,7 @@ standButton.addEventListener("click", () => {
   hitButton.style.display = "none";
   standButton.style.display = "none";
   newDealButton.style.display = "inline";
+  getCardImage();
 });
 
 newDealButton.addEventListener("click", () => {
@@ -371,9 +400,26 @@ newDealButton.addEventListener("click", () => {
   newDealButton.style.display = "none";
   document.querySelector("body > div > div.dealer").innerText = "";
   document.querySelector("body > div > div.player1").innerText = "";
-  player.money = document.querySelector("body > div.money").innerText = money;
-  window.location.reload();
-});
+  player.cards = [""];
+  dealer.cards = [""];
+  // player.money = document.querySelector("body > div.money").innerText = money;
+  pStartGame();
+  function sumCards() {
+    //player cards
+    console.log(player.cards);
+    console.log(dealer.cards);
+    const pcard1 = player.cards[1].value;
+    const pcard2 = player.cards[2].value;
+    const twoSum = pcard1 + pcard2;
+    //Dealer Cards
+    const dcard1 = dealer.cards[1].value;
+    const dcard2 = dealer.cards[2].value;
+    const dtwoSum = dcard1 + dcard2;
+    //append the DOM
 
-// is dealer or player winner
-// give / lose money
+    document.querySelector("body > div > div.dealer").innerText = dtwoSum;
+    document.querySelector("body > div > div.player1").innerText = twoSum;
+  }
+  sumCards();
+  getCardImage();
+});
